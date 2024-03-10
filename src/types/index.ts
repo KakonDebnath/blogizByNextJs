@@ -1,4 +1,4 @@
-export type TBlogs = {
+export type TBlog = {
   id: string;
   title: string;
   description: string;
@@ -9,5 +9,11 @@ export type TBlogs = {
 };
 
 export type TBlogsPropsType = {
-  blogs: TBlogs[];
+  blogs: TBlog[];
+};
+
+export type TBlogId = {
+  params: {
+    blogId: string;
+  };
 };

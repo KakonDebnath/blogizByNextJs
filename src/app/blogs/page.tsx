@@ -1,11 +1,11 @@
 import BlogCard from '@/components/ui/BlogCard';
-import { TBlogs } from '@/types';
+import { TBlog } from '@/types';
 
 const BlogsPage = async () => {
   const res = await fetch('http://localhost:5000/blogs', {
     cache: 'no-store',
   });
-  const blogs: TBlogs[] = await res.json();
+  const blogs: TBlog[] = await res.json();
   return (
     <div>
       <h1 className="text-4xl text-center my-5">

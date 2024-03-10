@@ -1,10 +1,10 @@
-import { TBlogs } from '@/types';
+import { TBlog } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillLike } from 'react-icons/ai';
 import { FaCalendar } from 'react-icons/fa';
 
-const LatestBlogCard = ({ blog }: { blog: TBlogs }) => {
+const LatestBlogCard = ({ blog }: { blog: TBlog }) => {
   return (
     <div key={blog.id} className="card w-full bg-base-100 shadow-xl">
       <figure>

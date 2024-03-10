@@ -1,10 +1,10 @@
-import { TBlogs } from '@/types';
+import { TBlog } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AiFillLike } from 'react-icons/ai';
 import { FaCalendar } from 'react-icons/fa';
 
-const BlogCard = ({ blog }: { blog: TBlogs }) => {
+const BlogCard = ({ blog }: { blog: TBlog }) => {
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>
@@ -48,7 +48,7 @@ const BlogCard = ({ blog }: { blog: TBlogs }) => {
           </div>
 
           <div className="flex items-center">
-            <AiFillLike className="text-accent text-xl" /> {blog.total_likes}{' '}
+            <AiFillLike className="text-accent text-xl" /> {blog.total_likes}
             Likes
           </div>
         </div>

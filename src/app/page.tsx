@@ -1,5 +1,5 @@
 import LatestBlogs from '@/components/latestBlogs/LatestBlogs';
-import { TBlogs } from '@/types';
+import { TBlog } from '@/types';
 
 const HomePage = async () => {
   const res = await fetch('http://localhost:5000/blogs', {
@@ -8,7 +8,7 @@ const HomePage = async () => {
       revalidate: 10,
     },
   });
-  const blogs: TBlogs[] = await res.json();
+  const blogs: TBlog[] = await res.json();
   return (
     <>
       <LatestBlogs blogs={blogs} />
