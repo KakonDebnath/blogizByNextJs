@@ -1,6 +1,6 @@
 export type TChildrenProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 export type TBlog = {
   id: string;
   title: string;
@@ -20,3 +20,5 @@ export type TBlogId = {
     blogId: string;
   };
 };
+
+export type TFormValues = TBlog;

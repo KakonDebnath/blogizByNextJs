@@ -4,13 +4,23 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+  tagTypes: ['blogs'],
   endpoints: (builder) => ({
     getBlogs: builder.query({
       query: () => `/blogs`,
+      providesTags: ['blogs'],
+    }),
+    createBlog: builder.mutation({
+      query: (blogData) => ({
+        url: '/blogs',
+        method: 'POST',
+        body: blogData,
+      }),
+      invalidatesTags: ['blogs'],
     }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetBlogsQuery } = baseApi;
+export const { useGetBlogsQuery, useCreateBlogMutation } = baseApi;

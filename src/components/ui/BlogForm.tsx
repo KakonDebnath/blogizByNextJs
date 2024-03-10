@@ -1,26 +1,29 @@
-"use client";
+'use client';
 
-import { useForm } from "react-hook-form";
-
-type FormValues = {
-  id: string;
-  title: string;
-  description: string;
-  publish_date: string;
-  author_name: string;
-  blog_image: string;
-  total_likes: string;
-};
+import { createBlog } from '@/actions/createBlog';
+import { useGetBlogsQuery } from '@/redux/api/baseApi';
+import { TFormValues } from '@/types';
+import { useForm } from 'react-hook-form';
 
 const CreateBlogForm = () => {
+  const { data: blogs, isFetching } = useGetBlogsQuery('');
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<TFormValues>();
 
-  const onSubmit = async (data: FormValues) => {
-    console.log(data);
+  const onSubmit = async (data: TFormValues) => {
+    data.id = JSON.stringify(blogs.length + 1);
+    data.total_likes = '1000';
+
+    try {
+      const res = await createBlog(data);
+      console.log(res);
+    } catch (error: any) {
+      console.log(error);
+      throw new Error(error.message);
+    }
   };
 
   return (
@@ -38,7 +41,7 @@ const CreateBlogForm = () => {
               </label>
               <input
                 type="text"
-                {...register("title")}
+                {...register('title')}
                 placeholder="Title"
                 className="input input-bordered"
                 required
@@ -49,7 +52,7 @@ const CreateBlogForm = () => {
                 <span className="label-text">Description</span>
               </label>
               <textarea
-                {...register("description")}
+                {...register('description')}
                 placeholder="Description"
                 className="textarea textarea-bordered"
                 required
@@ -60,7 +63,7 @@ const CreateBlogForm = () => {
                 <span className="label-text">Publish Date</span>
               </label>
               <input
-                {...register("publish_date")}
+                {...register('publish_date')}
                 type="date"
                 className="input input-bordered"
                 required
@@ -72,7 +75,7 @@ const CreateBlogForm = () => {
               </label>
               <input
                 type="text"
-                {...register("author_name")}
+                {...register('author_name')}
                 placeholder="Author Name"
                 className="input input-bordered"
                 required
@@ -84,7 +87,7 @@ const CreateBlogForm = () => {
               </label>
               <input
                 type="url"
-                {...register("blog_image")}
+                {...register('blog_image')}
                 placeholder="Image URL"
                 className="input input-bordered"
                 required
