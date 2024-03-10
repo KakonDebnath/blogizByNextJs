@@ -1,7 +1,12 @@
+import LatestBlogs from '@/components/latestBlogs/LatestBlogs';
+import { TBlogs } from '@/types';
+
 const HomePage = async () => {
+  const res = await fetch('http://localhost:5000/blogs');
+  const blogs: TBlogs[] = await res.json();
   return (
     <>
-      <h1 className="text-center text-4xl my-5">Latest Blogs</h1>
+      <LatestBlogs blogs={blogs} />
     </>
   );
 };
