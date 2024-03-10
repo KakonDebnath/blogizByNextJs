@@ -1,3 +1,6 @@
+export type TChildrenProps = {
+  children: React.ReactNode
+}
 export type TBlog = {
   id: string;
   title: string;
