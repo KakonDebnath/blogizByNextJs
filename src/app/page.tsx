@@ -2,7 +2,12 @@ import LatestBlogs from '@/components/latestBlogs/LatestBlogs';
 import { TBlogs } from '@/types';
 
 const HomePage = async () => {
-  const res = await fetch('http://localhost:5000/blogs');
+  const res = await fetch('http://localhost:5000/blogs', {
+    // cache: 'force-cache',
+    next: {
+      revalidate: 10,
+    },
+  });
   const blogs: TBlogs[] = await res.json();
   return (
     <>

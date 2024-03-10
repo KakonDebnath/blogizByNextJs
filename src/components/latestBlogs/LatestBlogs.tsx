@@ -1,6 +1,7 @@
 import { TBlogsPropsType } from '@/types';
 import LatestBlogCard from '../ui/LatestBlogCard';
 import BlogCard from '../ui/BlogCard';
+import Link from 'next/link';
 
 const LatestBlogs = ({ blogs }: TBlogsPropsType) => {
   return (
@@ -21,6 +22,14 @@ const LatestBlogs = ({ blogs }: TBlogsPropsType) => {
         {blogs.slice(2, 5).map((blog) => (
           <BlogCard key={blog.id} blog={blog} />
         ))}
+      </div>
+      <div className="flex justify-center pb-4">
+        <Link
+          href="/blogs"
+          className="btn btn-accent text-white rounded-full px-5"
+        >
+          See All Blogs
+        </Link>
       </div>
     </div>
   );
